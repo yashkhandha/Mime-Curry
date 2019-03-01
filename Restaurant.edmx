@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="RestaurantModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cuisine">
+          <Key>
+            <PropertyRef Name="CuisineID" />
+          </Key>
+          <Property Name="CuisineID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CuisineName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CuisineDescription" Type="nvarchar" MaxLength="300" />
+          <Property Name="CuisineYear" Type="date" />
+        </EntityType>
+        <EntityType Name="Dish">
+          <Key>
+            <PropertyRef Name="DishID" />
+          </Key>
+          <Property Name="DishID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DishName" Type="nvarchar" MaxLength="50" />
+          <Property Name="DishDescription" Type="nvarchar" MaxLength="300" />
+          <Property Name="DishPrice" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="CuisineID" Type="int" />
+        </EntityType>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="NewsID" />
+          </Key>
+          <Property Name="NewsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NewsHeadline" Type="varchar" MaxLength="1000" />
+          <Property Name="NewsDescription" Type="varchar" MaxLength="1000" />
+          <Property Name="NewsDate" Type="date" />
+          <Property Name="Author" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <Association Name="FK_DishToCuisine">
+          <End Role="Cuisine" Type="Self.Cuisine" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Dish" Type="Self.Dish" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cuisine">
+              <PropertyRef Name="CuisineID" />
+            </Principal>
+            <Dependent Role="Dish">
+              <PropertyRef Name="CuisineID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RestaurantModelStoreContainer">
+          <EntitySet Name="Cuisine" EntityType="Self.Cuisine" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Dish" EntityType="Self.Dish" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_DishToCuisine" Association="Self.FK_DishToCuisine">
+            <End Role="Cuisine" EntitySet="Cuisine" />
+            <End Role="Dish" EntitySet="Dish" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RestaurantModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Cuisine">
+          <Key>
+            <PropertyRef Name="CuisineID" />
+          </Key>
+          <Property Name="CuisineID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CuisineName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CuisineDescription" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="CuisineYear" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Dishes" Relationship="Self.FK_DishToCuisine" FromRole="Cuisine" ToRole="Dish" />
+        </EntityType>
+        <EntityType Name="Dish">
+          <Key>
+            <PropertyRef Name="DishID" />
+          </Key>
+          <Property Name="DishID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DishName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DishDescription" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="DishPrice" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="CuisineID" Type="Int32" />
+          <NavigationProperty Name="Cuisine" Relationship="Self.FK_DishToCuisine" FromRole="Dish" ToRole="Cuisine" />
+        </EntityType>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="NewsID" />
+          </Key>
+          <Property Name="NewsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NewsHeadline" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="NewsDescription" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="NewsDate" Type="DateTime" Precision="0" />
+          <Property Name="Author" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_DishToCuisine">
+          <End Role="Cuisine" Type="Self.Cuisine" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Dish" Type="Self.Dish" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cuisine">
+              <PropertyRef Name="CuisineID" />
+            </Principal>
+            <Dependent Role="Dish">
+              <PropertyRef Name="CuisineID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RestaurantEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cuisines" EntityType="Self.Cuisine" />
+          <EntitySet Name="Dishes" EntityType="Self.Dish" />
+          <EntitySet Name="News" EntityType="Self.News" />
+          <AssociationSet Name="FK_DishToCuisine" Association="Self.FK_DishToCuisine">
+            <End Role="Cuisine" EntitySet="Cuisines" />
+            <End Role="Dish" EntitySet="Dishes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RestaurantModelStoreContainer" CdmEntityContainer="RestaurantEntities">
+          <EntitySetMapping Name="Cuisines">
+            <EntityTypeMapping TypeName="RestaurantModel.Cuisine">
+              <MappingFragment StoreEntitySet="Cuisine">
+                <ScalarProperty Name="CuisineID" ColumnName="CuisineID" />
+                <ScalarProperty Name="CuisineName" ColumnName="CuisineName" />
+                <ScalarProperty Name="CuisineDescription" ColumnName="CuisineDescription" />
+                <ScalarProperty Name="CuisineYear" ColumnName="CuisineYear" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dishes">
+            <EntityTypeMapping TypeName="RestaurantModel.Dish">
+              <MappingFragment StoreEntitySet="Dish">
+                <ScalarProperty Name="DishID" ColumnName="DishID" />
+                <ScalarProperty Name="DishName" ColumnName="DishName" />
+                <ScalarProperty Name="DishDescription" ColumnName="DishDescription" />
+                <ScalarProperty Name="DishPrice" ColumnName="DishPrice" />
+                <ScalarProperty Name="CuisineID" ColumnName="CuisineID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="News">
+            <EntityTypeMapping TypeName="RestaurantModel.News">
+              <MappingFragment StoreEntitySet="News">
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="NewsID" ColumnName="NewsID" />
+                <ScalarProperty Name="NewsHeadline" ColumnName="NewsHeadline" />
+                <ScalarProperty Name="NewsDescription" ColumnName="NewsDescription" />
+                <ScalarProperty Name="NewsDate" ColumnName="NewsDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
