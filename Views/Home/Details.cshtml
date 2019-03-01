@@ -1,0 +1,149 @@
+﻿@{
+    ViewBag.Title = "Details";
+}
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<html>
+<head>
+    <title></title>
+    @Styles.Render("~/Content/css")
+</head>
+<body>
+    <div class="container gutter-width">
+        <div class="row">
+            <div class="col-md-3">
+                <ul class="list-group" style="width:400px">
+                    <li class="list-group-item">
+                        <div class="row" style="width:400px">
+                            <div class="col-sm-6">
+                                <label>Name</label>
+                            </div>
+                            <div class="col-sm-6">
+                                Yash Khandha
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Student ID  </label>
+                            </div>
+                            <div class="col-md-2">
+                                28614852
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Unit Name </label>
+                            </div>
+                            <div class="col-md-2">
+                                FIT5032-Internet Application Development
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Unit Provider </label>
+                            </div>
+                            <div class="col-md-2">
+                                Monash University, The Caulfield School of Information Technology
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Task name</label>
+                            </div>
+                            <div class="col-md-2">
+                                Assignment
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Tutors Name</label>
+                            </div>
+                            <div class="col-md-2">
+                                ABM Russel
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Email Link </label>
+                            </div>
+                            <div class="col-md-2">
+                                <a href="mailto:"ABM.Russel@monash.edu"">ABM Russel</a>
+                               
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Task Specification </label>
+                            </div>
+                            <div class="col-md-2">
+                                <a href="http://moodle.vle.monash.edu/mod/page/view.php?id=4154651" target="_top">Click for Task Specification</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Image References for profile</label>
+                            </div>
+                            <div class="col-md-2">
+                                https://au.fotolia.com/
+
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="container">
+            <table id="images" class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th class="success">Image</th>
+                        <th class="warning">Author</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <img class="img-rounded" src="@Url.Content("~/Content/Images/logo.png")" width="100" height="100" />
+                        </td>
+                        <td>
+                            Logo - Custom made
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img id="" src="@Url.Content("~/Content/Images/banner3.jpg")" width="500" height="100" />
+                        </td>
+                        <td>
+                            Banner - Custome made
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+
+    </div>
+
+
+
+
+
+</body>
+</html>

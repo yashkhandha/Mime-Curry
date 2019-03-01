@@ -1,0 +1,50 @@
+﻿@model Assignment.Dish
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Dish</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DishName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DishName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DishDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DishDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DishPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DishPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cuisine.CuisineName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cuisine.CuisineName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

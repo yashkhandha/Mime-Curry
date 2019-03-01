@@ -1,0 +1,42 @@
+﻿@model Assignment.Cuisine
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Cuisine</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CuisineName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CuisineName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CuisineDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CuisineDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CuisineYear)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CuisineYear)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

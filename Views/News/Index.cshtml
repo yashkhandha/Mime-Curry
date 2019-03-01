@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Assignment.News>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Scripts.Render("~/bundles/dataTables")
+@Styles.Render("~/Content/css")
+<div class="page-header">
+    <h3>News</h3>
+</div>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+    <button type="button" class="btn-link">
+        <p>
+            @Html.ActionLink("Create News Headlines", "Create")
+        </p>
+    </button>
+
+<table id="data" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th class="danger">
+                @Html.DisplayNameFor(model => model.NewsHeadline)
+            </th>
+            <th class="danger">
+                @Html.DisplayNameFor(model => model.NewsDate)
+            </th>
+            <th class="danger">Options</th>
+        </tr>
+     </thead>
+    <tfoot>
+        <tr>
+            <th class="danger">
+                @Html.DisplayNameFor(model => model.NewsHeadline)
+            </th>
+            <th class="danger">
+                @Html.DisplayNameFor(model => model.NewsDate)
+            </th>
+            <th class="danger">Options</th>
+        </tr>
+    </tfoot>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="active">
+                <td>
+                    @Html.DisplayFor(modelItem => item.NewsHeadline)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NewsDate)
+                </td>
+                <td>
+                    
+                    <span class="glyphicon glyphicon-list-alt"></span>
+                    @Html.ActionLink("Details", "Details", new { id = item.NewsID }) 
+                    
+                </td>
+            </tr>
+        }
+        </tbody>
+</table>

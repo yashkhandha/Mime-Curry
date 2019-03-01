@@ -1,0 +1,91 @@
+﻿@model Assignment.AspNetUser
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>User Info</h2>
+
+<div>
+    <h4>AspNetUser</h4>
+    <hr />
+    </div>
+
+<div>
+
+    <hr />
+    <dl class="dl-horizontal table table-bordered">
+        <dt class="alert-warning glyphicon-tag lead well">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd class="alert-success well">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <hr />
+
+
+        <dt class="alert-warning glyphicon-tag lead well">
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </dt>
+
+        <dd class="alert-success well">
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+
+        <hr />
+
+
+        <dt class="alert-warning glyphicon-tag lead well">
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd class="alert-success well">
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <hr />
+
+
+        <dt class="alert-warning glyphicon-tag lead well">
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd class="alert-success well">
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <hr />
+
+
+        <dt class="alert-warning glyphicon-tag lead well">
+            @Html.DisplayNameFor(model => model.DateOfBirth)
+        </dt>
+
+        <dd class="alert-success well">
+            @Html.DisplayFor(model => model.DateOfBirth)
+        </dd>
+
+        <hr />
+
+
+        <dt class="alert-warning glyphicon-tag lead well">
+            @Html.DisplayNameFor(model => model.ImagePath)
+        </dt>
+
+        <dd class="alert-success well">
+            <img class="img-thumbnail col-lg-offset-0" src='@Url.Content("~/Uploads/" + @ViewBag.Image)' width="200" height="200" />
+        </dd>
+
+        <hr />
+
+    </dl>
+</div>
+<p>
+
+        <button class="btn btn-block">@Html.ActionLink("Delete", "Delete", new { id = Model.Id })</button>
+    
+    <button class="btn btn-block">@Html.ActionLink("Back to List", "Index")</button>
+</p>

@@ -1,0 +1,57 @@
+﻿@model Assignment.News
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>News</h2>
+
+<div>
+
+    <hr />
+    <dl class="dl-horizontal table table-bordered"><br />
+        <dt class="alert-warning glyphicon-tag lead well">
+            @Html.DisplayNameFor(model => model.NewsHeadline)
+        </dt>
+
+        <dd class="alert-success well">
+            @Html.DisplayFor(model => model.NewsHeadline)
+        </dd><hr/>
+
+        <dt class="alert-warning glyphicon-tag lead well">
+            @Html.DisplayNameFor(model => model.NewsDescription)
+        </dt>
+
+        <dd class="alert-success well">
+            @Html.DisplayFor(model => model.NewsDescription)
+        </dd><hr />
+
+        <dt class="alert-warning glyphicon-calendar well">
+            @Html.DisplayNameFor(model => model.NewsDate)
+        </dt>
+
+        <dd class="alert-success well">
+            @Html.DisplayFor(model => model.NewsDate)
+        </dd><br />
+
+        <dt class="alert-warning glyphicon-tag lead well">
+            @Html.DisplayNameFor(model => model.Author)
+        </dt>
+
+        <dd class="alert-success well">
+            @Html.DisplayFor(model => model.Author)
+        </dd>
+        <hr />
+
+    </dl>
+</div>
+<p>
+    
+    @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+    {
+        <button class="btn btn-block">@Html.ActionLink("Edit", "Edit", new { id = Model.NewsID })</button>
+        <button class="btn btn-block">@Html.ActionLink("Delete", "Delete", new { id = Model.NewsID })</button>
+    }
+        <button class="btn btn-block">@Html.ActionLink("Back to List", "Index")</button>
+</p>

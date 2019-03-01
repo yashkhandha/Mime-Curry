@@ -1,0 +1,77 @@
+﻿@model IEnumerable<Assignment.Cuisine>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Scripts.Render("~/bundles/dataTables")
+@Styles.Render("~/Content/css")
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<div class="page-header">
+    <h3>Cuisines</h3>
+</div>
+@if (Request.IsAuthenticated && User.IsInRole("Admin"))
+{
+    <button type="button" class="btn-link">
+        <p>@Html.ActionLink("Add New Cuisine", "Create")</p>
+    </button>
+}
+<table id="datacuisine" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th class="success col-md-2" >
+                @Html.DisplayNameFor(model => model.CuisineName)
+            </th>
+            <th class="success col-md-6">
+                @Html.DisplayNameFor(model => model.CuisineDescription)
+            </th>
+            <th class="success">
+                @Html.DisplayNameFor(model => model.CuisineYear)
+            </th>
+            <th class="success">Options</th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th class="success col-md-2">
+                @Html.DisplayNameFor(model => model.CuisineName)
+            </th>
+            <th class="success col-md-6">
+                @Html.DisplayNameFor(model => model.CuisineDescription)
+            </th>
+            <th class="success">
+                @Html.DisplayNameFor(model => model.CuisineYear)
+            </th>
+            <th class="success">Options</th>
+        </tr>
+    </tfoot>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="active">
+                <td>
+                    @Html.DisplayFor(modelItem => item.CuisineName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CuisineDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CuisineYear)
+                </td>
+                <td>
+                    @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                    {
+                        <span class="glyphicon glyphicon-pencil"></span>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.CuisineID }) 
+                        <span class="glyphicon glyphicon-trash"></span>
+                        @Html.ActionLink("Delete", "Delete", new { id = item.CuisineID }) 
+                    }
+                        <span class="glyphicon glyphicon-list-alt"></span>
+                        @Html.ActionLink("Details", "Details", new { id = item.CuisineID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,85 @@
+﻿@model IEnumerable<Assignment.Dish>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Scripts.Render("~/bundles/dataTables")
+@Styles.Render("~/Content/css")
+<div class="page-header">
+    <h3>Dishes</h3>
+</div>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<button type="button" class="btn-link">
+    <p>@Html.ActionLink("Create New Dish", "Create")</p>
+</button>
+<br />
+<table id="dishtable" class="table table-bordered table-hover display">
+    <thead>
+        <tr>
+            <th class="warning">
+                @Html.DisplayNameFor(model => model.DishName)
+            </th>
+            <th class="warning">
+                @Html.DisplayNameFor(model => model.DishDescription)
+            </th>
+            <th class="warning">
+                @Html.DisplayNameFor(model => model.DishPrice)
+            </th>
+            <th class="warning">
+                @Html.DisplayNameFor(model => model.Cuisine.CuisineName)
+            </th>
+            <th class="warning">Options</th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th class="warning">
+                @Html.DisplayNameFor(model => model.DishName)
+            </th>
+            <th class="warning">
+                @Html.DisplayNameFor(model => model.DishDescription)
+            </th>
+            <th class="warning">
+                @Html.DisplayNameFor(model => model.DishPrice)
+            </th>
+            <th class="warning">
+                @Html.DisplayNameFor(model => model.Cuisine.CuisineName)
+            </th>
+            <th class="warning">Options</th>
+        </tr>
+    </tfoot>
+    <tbody>
+        @foreach (var item in Model)
+            {
+            <tr class="active">
+                <td>
+                    @Html.DisplayFor(modelItem => item.DishName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DishDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DishPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cuisine.CuisineName)
+                </td>
+                <td>
+                @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                {
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.DishID }) 
+                    <span class="glyphicon glyphicon-trash"></span>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.DishID }) 
+                }
+                    <span class="glyphicon glyphicon-list-alt"></span>
+                    @Html.ActionLink("Details", "Details", new { id = item.DishID }) 
+                    
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

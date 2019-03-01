@@ -1,0 +1,61 @@
+﻿@model Assignment.Cuisine
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Scripts.Render("~/bundles/javascript")
+@Scripts.Render("~/bundles/jqueryval")
+@Styles.Render("~/Content/base/css")
+
+<h2 class="panel-heading">Create Cuisine</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.CuisineName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CuisineName, new { htmlAttributes = new { @class = "form-control", Title = "Enter cuisine name here" } })
+                @Html.ValidationMessageFor(model => model.CuisineName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CuisineDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CuisineDescription, new { htmlAttributes = new { @class = "form-control", Title = "Enter cuisine description here" } })
+                @Html.ValidationMessageFor(model => model.CuisineDescription, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CuisineYear, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CuisineYear, new { htmlAttributes = new { @class = "form-control", @id = "dateinput", autocomplete = "off", type = "Date", Title = "Enter cuisine make year here" } })
+                @Html.ValidationMessageFor(model => model.CuisineYear, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    <button type="button" class="btn-link">
+        <p>@Html.ActionLink("Back to List", "Index")</p>
+    </button>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

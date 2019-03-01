@@ -1,0 +1,109 @@
+﻿@{
+    ViewBag.Title = "Review";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section scripts{
+<link href="~/Content/CustomStyle.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/angular.js"></script>
+<script src="~/Scripts/AngularCustom.js"></script>
+}
+<div ng-app="reviewModule" id="body">
+    <div ng-controller="reviewCtrl">
+        <h2>AngularJS</h2>
+        <h3>List of Reviews</h3>
+        <table ng-cloak>
+            <thead>
+                <tr>
+                    <th style="display: none;">Review ID</th>
+                    <th>Review Title</th>
+                    <th>Review Description</th>
+                    <th>Review Date</th>
+                    <th>Review Rating</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="items in reviewData">
+                    <td hidden="hidden">{{items.ReviewID}}</td>
+                    <td>{{items.ReviewTitle}}</td>
+                    <td>{{items.ReviewDescription}}</td>
+                    <td>{{items.ReviewDate}}</td>
+                    <td>{{items.ReviewRating}}</td>
+                    <td>
+                        <button ng-model="$scope.Review"
+                                ng-click="edit(reviewData[$index])">
+                            Edit
+                        </button>
+                        <button ng-click="delete($index)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="6">
+                        <hr />
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+        <br />
+        <div style="border-top: solid 2px #282828; width: 430px; height: 10px"> </div>
+        <div ng-show="Review.ReviewID != '' ">
+            <div>
+                <h2>Update Review</h2>
+            </div>
+            <div hidden="hidden">
+                <label for="id">Review Id</label>
+                <input type="text" data-ng-model="Review.reviewID" />
+            </div>
+            <div>
+                <label for="name">Review Title</label>
+                <input type="text" data-ng-model="Review.reviewTitle" />
+            </div>
+            <div>
+                <label for="name">Review Description</label>
+                <input type="text" data-ng-model="Review.reviewDescription" />
+            </div>
+            <div>
+                <label for="reviewDate">Review Date</label>
+                <input type="date" data-ng-model="Review.reviewDate" />
+            </div>
+            <div>
+                <label for="reviewRating">Review Rating</label>
+                <input type="text" data-ng-model="Review.reviewRating" />
+            </div>
+            <br />
+            <div>
+                <button data-ng-click="update()">Update</button>
+                <button data-ng-click="cancel()">Cancel</button>
+            </div>
+        </div>
+        <div ng-hide="Review.ReviewID != '' ">
+            <div>
+                <h2>Add Review</h2>
+            </div>
+            <div>
+                <label for="name">Review Title</label>
+                <input type="text" data-ng-model="Review.ReviewTitle" />
+            </div>
+            <div>
+                <label for="name">Review Description</label>
+                <input type="text" data-ng-model="Review.ReviewDescription" />
+            </div>
+            <div>
+                <label for="reviewDate">Review Date</label>
+                <input type="date" data-ng-model="Review.ReviewDate" />
+            </div>
+            <div>
+                <label for="reviewRating">Review Rating</label>
+                <input type="text" data-ng-model="Review.ReviewRating" />
+            </div>
+            <br />
+            <div>
+                <button data-ng-click="save()">Save</button>
+                <button data-ng-click="clear()">Clear</button>
+            </div>
+        </div>
+    </div>
+</div>
